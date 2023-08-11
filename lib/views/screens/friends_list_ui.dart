@@ -10,7 +10,7 @@ import '../widgets/gradient_container.dart';
 class FriendsList extends StatelessWidget {
   FriendsList({super.key});
 
-  FriendsController controller = Get.put(FriendsController());
+  FriendsController controller = Get.put(FriendsController()); // dependency injection
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +29,7 @@ class FriendsList extends StatelessWidget {
                 SizedBox(width: 10.w)
               ],
             ),
-            body: OrientationBuilder(builder: (context, orientation) {
+            body: OrientationBuilder(builder: (context, orientation) { // detect phone orientation
               return GridView.builder(
                   itemCount: controller.friends?.results.length ?? 10,
                   padding: const EdgeInsets.all(8),
@@ -41,6 +41,7 @@ class FriendsList extends StatelessWidget {
                       childAspectRatio:
                           orientation == Orientation.portrait ? 0.7 : 1),
                   itemBuilder: (context, index) {
+                    //defining variables for fetched data from API
                     String first =
                         controller.friends?.results[index].name.first ?? 'Name';
                     String last =
@@ -50,11 +51,12 @@ class FriendsList extends StatelessWidget {
                     String country =
                         controller.friends?.results[index].location.country ??
                             'Country';
+
                     return InkWell(
                       onTap: () {
-                        Get.to(FriendDetails(index: index));
+                        Get.to(FriendDetails(index: index)); //route for user details
                       },
-                      child: FriendsCard(
+                      child: FriendsCard( //custom widget for user cards
                           portrait: portrait,
                           name: '$first $last',
                           country: country),
