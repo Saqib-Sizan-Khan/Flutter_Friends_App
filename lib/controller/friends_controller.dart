@@ -13,7 +13,7 @@ class FriendsController extends GetxController {
   }
 
   Future<UserModel> fetchUserData() async {
-    final response = await http.get(Uri.parse('https://randomuser.me/api/?results=50'));
+    final response = await http.get(Uri.parse('https://randomuser.me/api/?results=10'));
 
     if (response.statusCode == 200) {
       Map<String, dynamic> jsonResponse = json.decode(response.body);

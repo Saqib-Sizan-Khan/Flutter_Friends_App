@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:friends_app/controller/friends_controller.dart';
 import 'package:friends_app/views/screens/friend_details_ui.dart';
+import 'package:friends_app/views/widgets/card.dart';
 import 'package:get/get.dart';
+
+import '../widgets/gradient_container.dart';
 
 class FriendsList extends StatelessWidget {
   FriendsList({super.key});
@@ -11,12 +14,7 @@ class FriendsList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        decoration: const BoxDecoration(
-            gradient: LinearGradient(
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-                colors: [Color(0xFF6B415F), Color(0xFFD99181)])),
+    return GradientContainer(
         child: Scaffold(
             backgroundColor: Colors.transparent,
             appBar: AppBar(
@@ -31,29 +29,32 @@ class FriendsList extends StatelessWidget {
                 SizedBox(width: 10.w)
               ],
             ),
-            body: ListView.builder(
+            body: GridView.builder(
                 itemCount: controller.friends?.results.length,
+                padding: const EdgeInsets.all(8),
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    crossAxisSpacing: 4,
+                    mainAxisSpacing: 4,
+                    childAspectRatio: 0.7),
                 itemBuilder: (context, index) {
-                  String first = controller.friends?.results[index].name.first ?? 'Name';
-                  String last = controller.friends?.results[index].name.last ?? '';
-                  String portrait = controller.friends?.results[index].picture.large ?? '';
-                  String country = controller.friends?.results[index].location.country ?? 'Country';
-                  return Card(
-                    color: const Color(0xFFD7D2D1),
-                    margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-                    child: ListTile(
-                      onTap: () {
-                        Get.to(FriendDetails(index: index));
-                      },
-                      title: Text('$first $last',
-                          style: TextStyle(fontSize: 20.spMax)),
-                      leading: CircleAvatar(
-                        radius: 30.spMax,
-                        backgroundImage: NetworkImage(portrait),
-                      ),
-                      subtitle: Text(country,
-                          style: TextStyle(fontSize: 16.spMax)),
-                    ),
+                  String first =
+                      controller.friends?.results[index].name.first ?? 'Name';
+                  String last =
+                      controller.friends?.results[index].name.last ?? '';
+                  String portrait =
+                      controller.friends?.results[index].picture.large ?? '';
+                  String country =
+                      controller.friends?.results[index].location.country ??
+                          'Country';
+                  return InkWell(
+                    onTap: () {
+                      Get.to(FriendDetails(index: index));
+                    },
+                    child: FriendsCard(
+                        portrait: portrait,
+                        name: '$first $last',
+                        country: country),
                   );
                 })));
   }
