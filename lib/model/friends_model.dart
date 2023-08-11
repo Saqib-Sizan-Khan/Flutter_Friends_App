@@ -7,8 +7,7 @@ class UserModel {
 
   factory UserModel.fromJson(Map<String, dynamic> json) {
     var userResults = json['results'] as List;
-    List<User> users =
-        userResults.map((userJson) => User.fromJson(userJson)).toList();
+    List<User> users = userResults.map((userJson) => User.fromJson(userJson)).toList();
 
     return UserModel(
       results: users,
@@ -17,33 +16,67 @@ class UserModel {
 }
 
 class User {
-  final String gender;
-  final Name name;
   final Location location;
+  final Name name;
   final String email;
-  final String phone;
   final String cell;
   final Picture picture;
 
   User({
-    required this.gender,
-    required this.name,
     required this.location,
+    required this.name,
     required this.email,
-    required this.phone,
     required this.cell,
     required this.picture,
   });
 
   factory User.fromJson(Map<String, dynamic> json) {
     return User(
-      gender: json['gender'],
-      name: Name.fromJson(json['name']),
       location: Location.fromJson(json['location']),
+      name: Name.fromJson(json['name']),
       email: json['email'],
-      phone: json['phone'],
       cell: json['cell'],
       picture: Picture.fromJson(json['picture']),
+    );
+  }
+}
+
+class Location {
+  final Street street;
+  final String city;
+  final String state;
+  final String country;
+
+  Location({
+    required this.street,
+    required this.city,
+    required this.state,
+    required this.country,
+  });
+
+  factory Location.fromJson(Map<String, dynamic> json) {
+    return Location(
+      street: Street.fromJson(json['street']),
+      city: json['city'],
+      state: json['state'],
+      country: json['country'],
+    );
+  }
+}
+
+class Street {
+  final int number;
+  final String name;
+
+  Street({
+    required this.number,
+    required this.name,
+  });
+
+  factory Street.fromJson(Map<String, dynamic> json) {
+    return Street(
+      number: json['number'],
+      name: json['name'],
     );
   }
 }
@@ -68,53 +101,16 @@ class Name {
   }
 }
 
-class Location {
-  final String city;
-  final String state;
-  final String country;
-
-  Location({
-    required this.city,
-    required this.state,
-    required this.country,
-  });
-
-  factory Location.fromJson(Map<String, dynamic> json) {
-    if (json.containsKey('location')) {
-      Map<String, dynamic> locationJson = json['location'];
-      return Location(
-        city: locationJson['city'],
-        state: locationJson['state'],
-        country: locationJson['country'],
-      );
-    } else {
-      // Handle the case where "location" key is not nested
-      return Location(
-        city: json['city'],
-        state: json['state'],
-        country: json['country'],
-      );
-    }
-  }
-
-}
-
 class Picture {
   final String large;
-  final String medium;
-  final String thumbnail;
 
   Picture({
     required this.large,
-    required this.medium,
-    required this.thumbnail,
   });
 
   factory Picture.fromJson(Map<String, dynamic> json) {
     return Picture(
       large: json['large'],
-      medium: json['medium'],
-      thumbnail: json['thumbnail'],
     );
   }
 }

@@ -18,6 +18,7 @@ class FriendsController extends GetxController {
     if (response.statusCode == 200) {
       Map<String, dynamic> jsonResponse = json.decode(response.body);
       UserModel userModel = UserModel.fromJson(jsonResponse);
+      print(userModel.results[0].location.street.name);
       return userModel;
     } else {
       throw Exception('Failed to fetch user data');

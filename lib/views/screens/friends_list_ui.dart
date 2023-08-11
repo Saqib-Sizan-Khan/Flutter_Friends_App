@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:friends_app/controller/friends_controller.dart';
+import 'package:friends_app/views/screens/friend_details_ui.dart';
 import 'package:get/get.dart';
 
 class FriendsList extends StatelessWidget {
@@ -41,7 +42,9 @@ class FriendsList extends StatelessWidget {
                     color: const Color(0xFFD7D2D1),
                     margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
                     child: ListTile(
-
+                      onTap: () {
+                        Get.to(FriendDetails(index: index));
+                      },
                       title: Text('$first $last',
                           style: TextStyle(fontSize: 20.spMax)),
                       leading: CircleAvatar(

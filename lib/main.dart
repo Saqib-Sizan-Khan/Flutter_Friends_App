@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:friends_app/views/screens/friend_details_ui.dart';
 import 'package:friends_app/views/screens/friends_list_ui.dart';
 import 'package:get/get.dart';
 
