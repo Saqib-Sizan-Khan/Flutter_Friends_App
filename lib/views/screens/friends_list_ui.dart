@@ -29,33 +29,37 @@ class FriendsList extends StatelessWidget {
                 SizedBox(width: 10.w)
               ],
             ),
-            body: GridView.builder(
-                itemCount: controller.friends?.results.length,
-                padding: const EdgeInsets.all(8),
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    crossAxisSpacing: 4,
-                    mainAxisSpacing: 4,
-                    childAspectRatio: 0.7),
-                itemBuilder: (context, index) {
-                  String first =
-                      controller.friends?.results[index].name.first ?? 'Name';
-                  String last =
-                      controller.friends?.results[index].name.last ?? '';
-                  String portrait =
-                      controller.friends?.results[index].picture.large ?? '';
-                  String country =
-                      controller.friends?.results[index].location.country ??
-                          'Country';
-                  return InkWell(
-                    onTap: () {
-                      Get.to(FriendDetails(index: index));
-                    },
-                    child: FriendsCard(
-                        portrait: portrait,
-                        name: '$first $last',
-                        country: country),
-                  );
-                })));
+            body: OrientationBuilder(builder: (context, orientation) {
+              return GridView.builder(
+                  itemCount: controller.friends?.results.length ?? 10,
+                  padding: const EdgeInsets.all(8),
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount:
+                          orientation == Orientation.portrait ? 2 : 3,
+                      crossAxisSpacing: 4,
+                      mainAxisSpacing: 4,
+                      childAspectRatio:
+                          orientation == Orientation.portrait ? 0.7 : 1),
+                  itemBuilder: (context, index) {
+                    String first =
+                        controller.friends?.results[index].name.first ?? 'Name';
+                    String last =
+                        controller.friends?.results[index].name.last ?? '';
+                    String portrait =
+                        controller.friends?.results[index].picture.large ?? '';
+                    String country =
+                        controller.friends?.results[index].location.country ??
+                            'Country';
+                    return InkWell(
+                      onTap: () {
+                        Get.to(FriendDetails(index: index));
+                      },
+                      child: FriendsCard(
+                          portrait: portrait,
+                          name: '$first $last',
+                          country: country),
+                    );
+                  });
+            })));
   }
 }

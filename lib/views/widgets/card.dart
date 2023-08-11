@@ -15,7 +15,7 @@ class FriendsCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-        color: const Color(0xFFD7D2D1),
+        color: Colors.black.withOpacity(0.2),
         child: Container(
           padding: EdgeInsets.symmetric(horizontal: 4),
           child: Column(
@@ -32,9 +32,9 @@ class FriendsCard extends StatelessWidget {
               SizedBox(height: 20.h),
               Text(name,
                   textAlign: TextAlign.center,
-                  style: TextStyle(fontSize: 18.spMax)),
+                  style: TextStyle(fontSize: 18.spMax, color: Colors.white)),
               SizedBox(height: 10.h),
-              Text(country, style: TextStyle(fontSize: 16.spMax)),
+              Text(country, style: TextStyle(fontSize: 16.spMax, color: Colors.white)),
             ],
           ),
         ));

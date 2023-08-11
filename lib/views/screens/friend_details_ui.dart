@@ -14,17 +14,15 @@ class FriendDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String first = controller.friends?.results[index].name.first ?? 'Name';
+    String first = controller.friends?.results[index].name.first ?? '';
     String last = controller.friends?.results[index].name.last ?? '';
     String portrait = controller.friends?.results[index].picture.large ?? '';
     var sNum = controller.friends?.results[index].location.street.number ?? '';
-    String sName = controller.friends?.results[index].location.street.name ??
-        'Street Name';
-    String city =
-        controller.friends?.results[index].location.city ?? 'City Name';
+    String sName =
+        controller.friends?.results[index].location.street.name ?? '';
+    String city = controller.friends?.results[index].location.city ?? '';
     String state = controller.friends?.results[index].location.state ?? '';
-    String country =
-        controller.friends?.results[index].location.country ?? 'Country Name';
+    String country = controller.friends?.results[index].location.country ?? '';
     String email = controller.friends?.results[index].email ?? '';
     String cellPhone = controller.friends?.results[index].cell ?? '';
     return Scaffold(
