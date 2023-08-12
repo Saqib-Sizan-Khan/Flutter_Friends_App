@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:friends_app/controller/friends_controller.dart';
-import 'package:friends_app/views/widgets/info_container.dart';
 import 'package:friends_app/views/widgets/orientation_containers.dart';
+import 'package:friends_app/views/widgets/orientation_views.dart';
 import 'package:get/get.dart';
-import '../../controller/email_launcher.dart';
 import '../widgets/gradient_container.dart';
 
 class FriendDetails extends StatelessWidget {
@@ -45,51 +43,33 @@ class FriendDetails extends StatelessWidget {
             children: [
               Expanded(
                 flex: 1,
-                child: GradientContainer( //custom widget
-                  child: orientation == Orientation.portrait // check orientation
+                child: GradientContainer(
+                  //custom widget
+                  child: orientation ==
+                          Orientation.portrait // check orientation
                       ? PortraitContainer(name: '$first $last', image: portrait)
                       : LandScapeContainer(
                           name: '$first $last', image: portrait),
                 ),
               ),
-              Expanded( //
-                flex: 2,
-                child: Container(
-                  child: SingleChildScrollView(
-                    child: Column(
-                      children: [
-                        SizedBox(height: 20.h),
-                        // InfoCon custom widget for carry users info
-                        InfoCon(
-                            title: "Address",
-                            contents:
-                                'Street: $sNum, $sName\nPostCode: $postcode',
-                            image: 'assets/images/address.png'),
-                        InfoCon(
-                            title: "City and State",
-                            contents: "$city, $state",
-                            image: 'assets/images/city.png'),
-                        InfoCon(
-                            title: "Country",
-                            contents: country,
-                            image: 'assets/images/country.png'),
-                        InkWell(
-                            onTap: () {
-                              emailUrlLauncher(email); // launching email app
-                            },
-                            child: InfoCon(
-                                title: "Email",
-                                contents: email,
-                                image: 'assets/images/email.png')),
-                        InfoCon(
-                            title: "Cell Phone",
-                            contents: cellPhone,
-                            image: 'assets/images/phone.png'),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
+              Expanded(
+                  //
+                  flex: 2,
+                  child: orientation == Orientation.landscape
+                      ? LandscapeView(
+                          street: '$sNum, $sName',
+                          postcode: '$postcode',
+                          cityState: '$city, $state',
+                          country: country,
+                          email: email,
+                          phone: cellPhone)
+                      : PortraitView(
+                          street: '$sNum, $sName',
+                          postcode: '$postcode',
+                          cityState: '$city, $state',
+                          country: country,
+                          email: email,
+                          phone: cellPhone)),
             ],
           );
         }));
