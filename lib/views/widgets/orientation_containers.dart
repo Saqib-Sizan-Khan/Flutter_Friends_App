@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+// widget for showing container in portrait mode
 class PortraitContainer extends StatelessWidget {
-  PortraitContainer({super.key, required this.name, required this.image});
+  const PortraitContainer({super.key, required this.name, required this.image});
 
-  String name;
-  String image;
+  final String name;
+  final String image;
 
   @override
   Widget build(BuildContext context) {
@@ -20,19 +21,19 @@ class PortraitContainer extends StatelessWidget {
             backgroundImage: NetworkImage(image),
           ),
         ),
-        Text(name,
-            style: TextStyle(
-                fontSize: 28.spMax, color: Colors.white))
+        Text(name, style: TextStyle(fontSize: 28.spMax, color: Colors.white))
       ],
     );
   }
 }
 
-class LandScapeContainer extends StatelessWidget {
-  LandScapeContainer({super.key, required this.name, required this.image});
+// widget for showing container in landscape mode
+class LandscapeContainer extends StatelessWidget {
+  const LandscapeContainer(
+      {super.key, required this.name, required this.image});
 
-  String name;
-  String image;
+  final String name;
+  final String image;
 
   @override
   Widget build(BuildContext context) {
@@ -47,9 +48,7 @@ class LandScapeContainer extends StatelessWidget {
             backgroundImage: NetworkImage(image),
           ),
         ),
-        Text(name,
-            style: TextStyle(
-                fontSize: 28.spMax, color: Colors.white))
+        Text(name, style: TextStyle(fontSize: 28.spMax, color: Colors.white))
       ],
     );
   }

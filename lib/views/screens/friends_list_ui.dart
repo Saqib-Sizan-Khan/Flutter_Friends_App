@@ -4,16 +4,17 @@ import 'package:friends_app/controller/friends_controller.dart';
 import 'package:friends_app/views/screens/friend_details_ui.dart';
 import 'package:friends_app/views/widgets/card.dart';
 import 'package:get/get.dart';
-
 import '../widgets/gradient_container.dart';
 
 class FriendsList extends StatelessWidget {
   FriendsList({super.key});
 
-  FriendsController controller = Get.put(FriendsController()); // dependency injection
+  // dependency injection
+  final FriendsController controller = Get.put(FriendsController());
 
   @override
   Widget build(BuildContext context) {
+    //custom widget for showing gradient
     return GradientContainer(
         child: Scaffold(
             backgroundColor: Colors.transparent,
@@ -29,11 +30,14 @@ class FriendsList extends StatelessWidget {
                 SizedBox(width: 10.w)
               ],
             ),
-            body: OrientationBuilder(builder: (context, orientation) { // detect phone orientation
+            // detect phone orientation
+            body: OrientationBuilder(builder: (context, orientation) {
+              // grid for showing users info
               return GridView.builder(
                   itemCount: controller.friends?.results.length ?? 10,
                   padding: const EdgeInsets.all(8),
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      // check orientation for grid style
                       crossAxisCount:
                           orientation == Orientation.portrait ? 2 : 3,
                       crossAxisSpacing: 4,
@@ -51,12 +55,13 @@ class FriendsList extends StatelessWidget {
                     String country =
                         controller.friends?.results[index].location.country ??
                             'Country';
-
                     return InkWell(
+                      //route for user details
                       onTap: () {
-                        Get.to(FriendDetails(index: index)); //route for user details
+                        Get.to(FriendDetails(index: index));
                       },
-                      child: FriendsCard( //custom widget for user cards
+                      // custom card widget for user
+                      child: FriendsCard(
                           portrait: portrait,
                           name: '$first $last',
                           country: country),

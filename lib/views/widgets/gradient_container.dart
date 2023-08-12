@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 
+// widget for showing gradient
 class GradientContainer extends StatelessWidget {
-  GradientContainer({super.key, required this.child});
+  const GradientContainer({super.key, required this.child});
 
-  Widget child;
+  final Widget child;
 
   @override
   Widget build(BuildContext context) {

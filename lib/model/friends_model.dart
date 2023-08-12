@@ -1,3 +1,4 @@
+// model for converting json to dart
 class UserModel {
   final List<User> results;
 
@@ -7,7 +8,8 @@ class UserModel {
 
   factory UserModel.fromJson(Map<String, dynamic> json) {
     var userResults = json['results'] as List;
-    List<User> users = userResults.map((userJson) => User.fromJson(userJson)).toList();
+    List<User> users =
+        userResults.map((userJson) => User.fromJson(userJson)).toList();
 
     return UserModel(
       results: users,

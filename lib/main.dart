@@ -12,7 +12,8 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return ScreenUtilInit( //widget responsive initialization
+    // widget responsive initialization
+    return ScreenUtilInit(
       designSize: const Size(412, 915),
       minTextAdapt: true,
       builder: (context, child) {

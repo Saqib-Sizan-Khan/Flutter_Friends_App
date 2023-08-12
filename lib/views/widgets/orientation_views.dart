@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:friends_app/controller/email_launcher.dart';
 import 'info_container.dart';
 
+// widget for showing views in portrait mode
 class PortraitView extends StatelessWidget {
-  PortraitView({
+  const PortraitView({
     super.key,
     required this.street,
     required this.postcode,
@@ -13,20 +14,20 @@ class PortraitView extends StatelessWidget {
     required this.phone,
   });
 
-  String street;
-  String postcode;
-  String cityState;
-  String country;
-  String email;
-  String phone;
+  final String street;
+  final String postcode;
+  final String cityState;
+  final String country;
+  final String email;
+  final String phone;
 
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      padding: EdgeInsets.all(12),
+      padding: const EdgeInsets.all(12),
       child: Column(
         children: [
-          // InfoCon custom widget for carry users info
+          // showing user info in list style
           ListInfo(
               title: "Address",
               contents: 'Street: $street\nPostCode: $postcode',
@@ -40,8 +41,9 @@ class PortraitView extends StatelessWidget {
               contents: country,
               image: 'assets/images/country.png'),
           InkWell(
+              // launching email app
               onTap: () {
-                emailUrlLauncher(email); // launching email app
+                emailUrlLauncher(email);
               },
               child: ListInfo(
                   title: "Email",
@@ -57,8 +59,9 @@ class PortraitView extends StatelessWidget {
   }
 }
 
+// widget for showing views in landscape mode
 class LandscapeView extends StatelessWidget {
-  LandscapeView({
+  const LandscapeView({
     super.key,
     required this.street,
     required this.postcode,
@@ -68,12 +71,12 @@ class LandscapeView extends StatelessWidget {
     required this.phone,
   });
 
-  String street;
-  String postcode;
-  String cityState;
-  String country;
-  String email;
-  String phone;
+  final String street;
+  final String postcode;
+  final String cityState;
+  final String country;
+  final String email;
+  final String phone;
 
   @override
   Widget build(BuildContext context) {
@@ -85,6 +88,7 @@ class LandscapeView extends StatelessWidget {
           childAspectRatio: 1.7),
       padding: const EdgeInsets.all(8),
       children: [
+        // showing user info in grid style
         GridInfo(
             title: "Address",
             contents: 'Street: $street\nPostCode: $postcode',
@@ -98,8 +102,9 @@ class LandscapeView extends StatelessWidget {
             contents: country,
             image: 'assets/images/country.png'),
         InkWell(
+            // launching email app
             onTap: () {
-              emailUrlLauncher(email); // launching email app
+              emailUrlLauncher(email);
             },
             child: GridInfo(
                 title: "Email",

@@ -1,31 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+// widget for users card
 class FriendsCard extends StatelessWidget {
-  FriendsCard(
+  const FriendsCard(
       {super.key,
       required this.portrait,
       required this.name,
       required this.country});
 
-  String portrait;
-  String name;
-  String country;
+  final String portrait;
+  final String name;
+  final String country;
 
   @override
   Widget build(BuildContext context) {
     return Card(
         color: Colors.black.withOpacity(0.2),
         child: Container(
-          padding: EdgeInsets.symmetric(horizontal: 4),
+          padding: const EdgeInsets.symmetric(horizontal: 4),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               CircleAvatar(
-                radius: 45.spMax,
+                radius: 45.spMax, // control responsive
                 backgroundColor: Colors.cyan,
                 child: CircleAvatar(
-                  radius: 40.spMax,
+                  radius: 40.spMax, // control responsive
                   backgroundImage: NetworkImage(portrait),
                 ),
               ),
@@ -34,7 +35,8 @@ class FriendsCard extends StatelessWidget {
                   textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 18.spMax, color: Colors.white)),
               SizedBox(height: 10.h),
-              Text(country, style: TextStyle(fontSize: 16.spMax, color: Colors.white)),
+              Text(country,
+                  style: TextStyle(fontSize: 16.spMax, color: Colors.white)),
             ],
           ),
         ));

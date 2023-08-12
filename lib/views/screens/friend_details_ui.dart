@@ -8,9 +8,9 @@ import '../widgets/gradient_container.dart';
 class FriendDetails extends StatelessWidget {
   FriendDetails({super.key, required this.index});
 
-  int index;
-  FriendsController controller =
-      Get.put(FriendsController()); // dependency injection
+  // dependency injection
+  final FriendsController controller = Get.put(FriendsController());
+  final int index;
 
   @override
   Widget build(BuildContext context) {
@@ -38,23 +38,24 @@ class FriendDetails extends StatelessWidget {
                   Get.back();
                 },
                 icon: const Icon(Icons.arrow_back_ios, color: Colors.white))),
+        // detect phone orientation
         body: OrientationBuilder(builder: (context, orientation) {
           return Column(
             children: [
+              // split the screen into two sections
               Expanded(
                 flex: 1,
+                //custom widget for showing gradient
                 child: GradientContainer(
-                  //custom widget
-                  child: orientation ==
-                          Orientation.portrait // check orientation
+                  // check orientation for container style
+                  child: orientation == Orientation.portrait
                       ? PortraitContainer(name: '$first $last', image: portrait)
-                      : LandScapeContainer(
-                          name: '$first $last', image: portrait),
+                      : LandscapeContainer(name: '$first $last', image: portrait),
                 ),
               ),
               Expanded(
-                  //
                   flex: 2,
+                  // check orientation for view style
                   child: orientation == Orientation.landscape
                       ? LandscapeView(
                           street: '$sNum, $sName',

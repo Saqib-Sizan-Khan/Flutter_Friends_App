@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+// widget for showing info in ListTile
 class ListInfo extends StatelessWidget {
-  ListInfo(
+  const ListInfo(
       {super.key,
       required this.title,
       required this.contents,
       required this.image});
 
-  String title;
-  String contents;
-  String image;
+  final String title;
+  final String contents;
+  final String image;
 
   @override
   Widget build(BuildContext context) {
@@ -23,26 +24,27 @@ class ListInfo extends StatelessWidget {
       height: 100,
       child: Center(
         child: ListTile(
-          leading: Image.asset(image, scale: 12),
+          leading: Image.asset(image, scale: 15),
           title: Text(title,
-              style: TextStyle(fontSize: 18.sp, color: Colors.cyan)),
-          subtitle: Text(contents, style: TextStyle(fontSize: 16.sp)),
+              style: TextStyle(fontSize: 16.spMax, color: Colors.cyan)),
+          subtitle: Text(contents, style: TextStyle(fontSize: 14.spMax)),
         ),
       ),
     );
   }
 }
 
+// widget for showing info in GridTile
 class GridInfo extends StatelessWidget {
-  GridInfo(
+  const GridInfo(
       {super.key,
-        required this.title,
-        required this.contents,
-        required this.image});
+      required this.title,
+      required this.contents,
+      required this.image});
 
-  String title;
-  String contents;
-  String image;
+  final String title;
+  final String contents;
+  final String image;
 
   @override
   Widget build(BuildContext context) {
@@ -56,10 +58,10 @@ class GridInfo extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              Image.asset(image, scale: 12),
+              Image.asset(image, scale: 20),
               Text(title,
-                  style: TextStyle(fontSize: 18.spMax, color: Colors.cyan)),
-              Text(contents, style: TextStyle(fontSize: 16.spMax)),
+                  style: TextStyle(fontSize: 14.spMax, color: Colors.cyan)),
+              Text(contents, style: TextStyle(fontSize: 12.spMax)),
             ],
           ),
         ),
